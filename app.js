@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 mongoose
-  .connect("mongodb://localhost:27017/menu")
+  .connect(process.env.DATABASE_URL)
   .then(() => {
     console.log("MongoDB connected successfully");
   })

@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Bistro Bliss | Sign Up
+        link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+        link(rel="stylesheet", href="/css/style.css")
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+    body 
+        .contain
+            .signup-container
+                h1.signup-head Sign Up
+                p.signup-subtitle Join our community and discover more than 15,000 recipes from around the world!
+                form.signup-form
+                    .input-group
+                        input#name(type="text" name="name" placeholder="Enter Full Name" required)
+                    .input-group
+                        input#email(type="email" name="email" placeholder="Enter Email Address" required)
+                    .input-group
+                        input#password(type="password" name="password" placeholder="Password" required)                   
+                    .form-options
+                       p.signup-link
+                            | Already have an account? 
+                            a(href="/login") Log in
+                    button.signup-btn SIGN UP
+                    script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+                    script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
+                    script(src='/js/signUp.js')

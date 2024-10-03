@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Bistro Bliss | Login
+        link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+        link(rel="stylesheet", href="/css/style.css")
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+    body 
+        .contain
+            .login-container
+                h1.login-head Login
+                p.login-subtitle More than 15,000 recipes from around the world!
+                form.login-form
+                    .input-group
+                        input#email(type="email" name="email" placeholder="Enter Email Address" required)
+                        i.fas.fa-envelope
+                    .input-group
+                        input#password(type="password" name="password" placeholder="Password" required)
+                        i.fas.fa-lock
+                        i.fas.fa-eye-slash.toggle-password
+                    .form-options
+                        
+                        a.forgot-password(href='#') Forgot Password?
+                    button.login-btn LOGIN
+                
+                p.signup-link
+                    | Don't have an account? 
+                    a(href="/signup") Sign up
+                    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js")
+                    script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
+                    script( src="/js/login.js")

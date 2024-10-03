@@ -1,0 +1,54 @@
+header.head
+    nav.navbar
+        .nav-container
+            .logo
+                a(href="/") Bistro Bliss
+            ul.nav-items
+                li
+                    a(href="/") Home
+                li
+                    a(href="/about") About
+                li
+                    a(href="/menu") Menu
+ 
+                li.cart-item-li
+                    a(href="/cart")
+                        svg.cart-icon(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                            path(d="M6 6h15l-1.68 8.39a2 2 0 0 1-1.98 1.61H8.66a2 2 0 0 1-1.98-1.61L6 6z")
+                            circle(cx="9" cy="20" r="1")
+                            circle(cx="20" cy="20" r="1")
+            .user-profile    
+                if user
+                    a.nav__el.nav__el--logout#logout Logout
+                    a.nav__el(href='#')
+                        img.nav__user-img(src='/images/user-profile.png' alt=`Photo of ${user.name}`)
+                        span= user.name.split(' ')[0] 
+                else         
+                    a.whitebtnlink(href="/login") Login        
+            button.menu-btn(onclick="toggleMenu()")
+                span.menu-icon
+
+    .mobile-nav
+        ul
+            li
+                a(href="/") Home
+            li
+                a(href="/about") About
+            li
+                a(href="/menu") Menu
+            
+            li.cart-item
+                a(href="/cart")
+                    svg.cart-icon(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round")
+                        path(d="M6 6h15l-1.68 8.39a2 2 0 0 1-1.98 1.61H8.66a2 2 0 0 1-1.98-1.61L6 6z")
+                        circle(cx="9" cy="20" r="1")
+                        circle(cx="20" cy="20" r="1")
+                    
+            .user-profile-mb    
+                if user
+                    a.nav__el.nav__el--logout#logout Logout
+                    a.nav__el(href='#')
+                        img.nav__user-img(src='/images/user-profile.png' alt=`Photo of ${user.name}`)
+                        span= user.name.split(' ')[0] 
+                else         
+                    a.whitebtnlink(href="/login") Login  

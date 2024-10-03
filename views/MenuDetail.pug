@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Menu
+        link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+        link(rel="stylesheet", href="/css/style.css")
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+    body 
+        include _header
+        .product-detail
+            .product-detail__image-container
+                img.product-detail__image(src="", alt="")
+            .product-detail__info
+                h1.product-detail__name
+                p.product-detail__description
+                p.product-detail__price 
+                button.product-detail__add-to-cart#btn Add to Cart
+        
+        footer.footer 
+            Copyright © 2023 Hashtag Developer. All Rights Reserved.
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
+        script(src="/js/script.js")            
+        script(src="/js/menu-detail.js")    

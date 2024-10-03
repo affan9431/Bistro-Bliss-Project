@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Order Details - FoodieDelight
+        link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+        link(rel="stylesheet" href="/css/style.css")
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+    body
+        include _header
+        .order-details-container
+            .order-details-success-message
+                p Thank you for your order! Your payment was successful.
+            h1.order-header Order Details
+            .order-details-info
+                p
+                    strong Order Number:
+                    span#order-number 
+                p
+                    strong Date:
+                    span#order-date 
+                p
+                    strong Name:
+                    span#customer-name 
+                p
+                    strong Delivery Address:
+                    span#delivery-address 
+            .order-details-items
+                h2 Order Items
+                #order-items
+            .order-details-total
+                p Total: <span id="total-amount"></span>
+            .order-details-payment-method
+                p
+                    strong Payment Method:
+                    span#payment-method 
+        script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')    
+        script(src="/js/script.js")  
+        script(src="/js/orderDetail.js")

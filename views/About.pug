@@ -1,0 +1,92 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Bistro Bliss | About
+        link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+        link(rel="stylesheet", href="css/style.css")
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+    body
+        include _header
+        section.about-us-container 
+            .about-us 
+                .rigth-box 
+                    .image 
+                        img(src="/images/about-page.png", alt="About Us Image") 
+                .left-box 
+                    h1 We provide healthy food for your family.
+                    p Our story began with a vision to create a unique dining experience that merges fine dining, exceptional service, and a vibrant ambiance. Rooted in city's rich culinary culture, we aim to honor our local roots while infusing a global palate.
+                    p At place, we believe that dining is not just about food, but also about the overall experience. Our staff, renowned for their warmth and dedication, strives to make every visit an unforgettable event.
+
+        section.video-container
+            .video-container-div
+            video(autoplay='', muted='', loop='')
+                source(src='/video/about.mp4', type='video/mp4')
+            .dark-overlay    
+            .centered-text
+                h1 Feel the authentic & original taste from us
+        section.about-us-container 
+            .about-us 
+                .left-box 
+                    h1 A little information for our valuable guest
+                    p At place, we believe that dining is not just about food, but also about the overall experience. Our staff, renowned for their warmth and dedication, strives to make every visit an unforgettable event.
+                    .box-2
+                        .location 
+                            h1 3
+                            p Locations
+                        .founded 
+                            h1 1995
+                            p Founded    
+                    .box-2
+                        .staff-member 
+                            h1 65+
+                            p Staff Members
+                        .customer 
+                            h1 100%
+                            p Satisfied Customers              
+                .rigth-box 
+                    .image 
+                        img(src="/images/about-page-2.png", alt="About Us Image") 
+               
+
+
+        section.review-container
+            h1  What Our Customers Say
+            .review-card-container
+                .review-card
+                    h2 &quot;The best restaurant&quot;
+                    p.size
+                    | Last night, we dined at place and were simply blown away. From the moment we stepped in, we were enveloped in an inviting atmosphere and greeted with warm smiles.
+                    .author
+                        img(src='https://i.pravatar.cc/150?img=1' alt='Sophire Robson')
+                        p
+                            | Sophire Robson
+                            br
+                            | Los Angeles, CA
+                .review-card
+                    h2 &quot;Simply delicious&quot;
+                    p.size
+                    | Place exceeded my expectations on all fronts. The ambiance was cozy and relaxed, making it a perfect venue for our anniversary dinner. Each dish was prepared and beautifully presented.
+                    .author
+                        img(src='https://i.pravatar.cc/150?img=2' alt='Matt Cannon')
+                        p
+                            | Matt Cannon
+                            br
+                            | San Diego, CA
+                .review-card
+                    h2 &quot;One of a kind restaurant&quot;
+                    p.size
+                    | The culinary experience at place is first to none. The atmosphere is vibrant, the food - nothing short of extraordinary. The food was the highlight of our evening. Highly recommended.
+                    .author
+                        img(src='https://i.pravatar.cc/150?img=3' alt='Andy Smith')
+                        p
+                            | Andy Smith
+                            br
+                            | San Francisco, CA 
+        footer.footer   
+            Copyright © 2023 Hashtag Developer. All Rights Reserved.
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
+        script(src="/js/script.js") 

@@ -1,0 +1,149 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Bistro Bliss | Gourmet Delivery at Your Doorstep
+        link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+        link(rel="stylesheet", href="/css/style.css")
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+    body 
+        .container 
+            include _header
+                    
+            main.main
+                section.hero
+                    .center 
+                        .text 
+                            h1 Best food for <br> your taste
+                            p Discover delectable cuisine and unforgettable moments in our welcoming, culinary haven. 
+                        .button
+                            a.redbtnLink(href="/booking") Book A Table    
+                            a.whitebtnlink(href="/menu") Explore Menu
+                section.browse-menu 
+                    h1 Browse Our Menu  
+                    .card-box 
+                        .card
+                            .icon
+                                img(src="/images/cup.jpg", alt="", srcset="Breakfast Logo")
+                            h2 Breakfast
+                            p
+                                | In the new era of technology we look in the future with certainty and pride for our life.
+                            a.button(href='/menu') Explore Menu 
+                        .card
+                            .icon
+                                img(src="/images/bowl.jpg", alt="Main Dishes Logo")
+                            h2 Main Dishes
+                            p
+                                | In the new era of technology we look in the future with certainty and pride for our life.
+                            a.button(href='/menu') Explore Menu 
+                        .card
+                            .icon
+                                img(src="/images/drink2.jpg", alt="Drink Logo")
+                            h2 Drinks
+                            p
+                                | In the new era of technology we look in the future with certainty and pride for our life.
+                            a.button(href='/menu') Explore Menu 
+                        .card
+                            .icon
+                                img(src="/images/cake.jpg", alt="Cake Logo")
+                            h2 Desserts
+                            p
+                                | In the new era of technology we look in the future with certainty and pride for our life.
+                            a.button(href='/menu') Explore Menu  
+                section.about-us-container 
+                    .about-us 
+                        .rigth-box 
+                            .image 
+                                img(src="/images/about.png", alt="About Us Image") 
+                        .left-box 
+                            h1 We provide healthy food for your family.
+                            p Our story began with a vision to create a unique dining experience that merges fine dining, exceptional service, and a vibrant ambiance. Rooted in city's rich culinary culture, we aim to honor our local roots while infusing a global palate.
+                            p At place, we believe that dining is not just about food, but also about the overall experience. Our staff, renowned for their warmth and dedication, strives to make every visit an unforgettable event.
+                            a.whitebtnlink#about(href="/about") More About Us
+
+                section.offer-container 
+                    .heading 
+                        h1 We also offer unique <br> services for your events
+                    .offer-card 
+                        .card-1  
+                                img(src="/images/offer-1.png", alt="Caterings Image")
+                                h4 Caterings  
+                                p In the new era of technology we look in the future with certainty for life.   
+                        .card-2  
+                                img(src="/images/birtday2.avif", alt="Birthday Image")
+                                h4 Birthdays  
+                                p In the new era of technology we look in the future with certainty for life.  
+                        .card-3  
+                                img(src="/images/happy-man-wife-sunny-day 1.png", alt="Wedding Image")
+                                h4 Weddings  
+                                p In the new era of technology we look in the future with certainty for life. 
+                        .card-4  
+                                img(src="/images/group-friends-eating-restaurant 1.png", alt="Event Image")
+                                h4 Events  
+                                p In the new era of technology we look in the future with certainty for life.  
+                section.fastest-food-container 
+                    .rigth-fastest-food 
+                        .fastest-food-image
+                            .image-1 
+                                img(src="/images/fastest-food-image-1.png", alt="Fast Food Image")
+                            .image-2 
+                                img.hide(src="/images/fastest-food-image-2.png", alt="Fast Food Image")
+                                img.hide(src="/images/fastest-food-image-3.png", alt="Fast Food Image")
+                    .left-fastest-food 
+                        .fastest-food-text 
+                            h1 Fastest Food Delivery in City  
+                            p Our visual designer lets you quickly and of drag a down your way to customapps for both keep desktop.
+                            .feature 
+                                .feature-1 
+                                    img(src="/images/time.png", alt="Time Logo")           
+                                    p Delivery within 30 minutes
+                                .feature-2 
+                                    img(src="/images/money.webp", alt="Money Logo")           
+                                    p Best Offer & Prices
+                                .feature-3 
+                                    img(src="/images/cart.webp", alt="Cart Logo")           
+                                    p Online Services Available
+                section.review-container
+                    h1  What Our Customers Say
+                    .review-card-container
+                        .review-card
+                            h2 &quot;The best restaurant&quot;
+                            p.size
+                            | Last night, we dined at place and were simply blown away. From the moment we stepped in, we were enveloped in an inviting atmosphere and greeted with warm smiles.
+                            .author
+                                img(src='/images/review1.jpeg' alt='Sophire Robson')
+                                p
+                                    | Sophire Robson
+                                    br
+                                    | Los Angeles, CA
+                        .review-card
+                            h2 &quot;Simply delicious&quot;
+                            p.size
+                            | Place exceeded my expectations on all fronts. The ambiance was cozy and relaxed, making it a perfect venue for our anniversary dinner. Each dish was prepared and beautifully presented.
+                            .author
+                                img(src='/images/review2.jpeg' alt='Matt Cannon')
+                                p
+                                    | Matt Cannon
+                                    br
+                                    | San Diego, CA
+                        .review-card
+                            h2 &quot;One of a kind restaurant&quot;
+                            p.size
+                            | The culinary experience at place is first to none. The atmosphere is vibrant, the food - nothing short of extraordinary. The food was the highlight of our evening. Highly recommended.
+                            .author
+                                img(src='/images/review3.jpeg' alt='Andy Smith')
+                                p
+                                    | Andy Smith
+                                    br
+                                    | San Francisco, CA 
+            footer.footer 
+                Copyright © 2023 Hashtag Developer. All Rights Reserved.
+            script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer")   
+            script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
+            script(src="/js/script.js")                          
+
+
+
+

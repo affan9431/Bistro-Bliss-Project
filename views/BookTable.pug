@@ -1,0 +1,54 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Bistro Bliss | Book A Table
+        link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+        link(rel="stylesheet", href="/css/style.css")
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+
+    body 
+        include _header
+        .booking-head
+            h1 Book A Table
+            p We consider all the drivers of change gives you the components <br> you need to change to create a truly happens.
+        .map 
+            .form-container
+                form
+                    .form-row
+                        .first-row
+                            .form-group
+                                label(for='date') Date
+                                input#date(type='date', name='date', value='2024-09-14')
+                            .form-group
+                                label(for='time') Time
+                                select#time(name='time')
+                                    option(value='18:30') 18:30
+                                    option(value='19:00') 19:00
+                                    option(value='19:30') 19:30
+                                    option(value='20:00') 20:00
+                        .first-row            
+                            .form-group
+                                label(for='name') Name
+                                input#name(type='text', name='name', placeholder='Enter your name')
+                            .form-group
+                                label(for='phone') Phone
+                                input#phone(type='tel', name='phone', placeholder='x-xxx-xxx-xxxx')
+                        .form-group
+                            label(for='persons') Total Person
+                            select#persons(name='persons')
+                                option(value='1') 1 Person
+                                option(value='2') 2 Persons
+                                option(value='3') 3 Persons
+                                option(value='4') 4 Persons
+                                option(value='5') 5 Persons
+                        button.book-button(type='button') Book A Table
+
+        footer.footer 
+            Copyright © 2023 Hashtag Developer. All Rights Reserved.
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
+        script(src="/js/script.js")                          
+        

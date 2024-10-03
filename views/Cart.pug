@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Food Cart
+        link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+        link(rel="stylesheet" href="/css/style.css") 
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+
+    body
+        include _header
+        main.cart-page
+            h1.cart-title Your Food Cart
+            ul.cart-items
+
+            .cart-total 
+            a.checkout-btn(href="javascript:void(0)" onclick="proceedToCheckout()") Proceed to Checkout
+        footer.footer 
+            Copyright © 2023 Hashtag Developer. All Rights Reserved.
+        script(src='https://js.stripe.com/v3/')
+    
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
+
+        script(src="/js/script.js")     
+        script(src="/js/displayCart.js")     

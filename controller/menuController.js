@@ -1,6 +1,6 @@
 const Menu = require("./../model/menuModel");
 const mongoose = require("mongoose");
-const AppError = require("./../utils/appError");
+const AppError = require("./../utils/AppError");
 
 exports.createMenu = async (req, res) => {
   try {

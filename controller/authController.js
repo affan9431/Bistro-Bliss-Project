@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("./../model/userModel");
 const { promisify } = require("util");
 const Email = require("../public/js/email");
-const AppError = require("../utils/AppError");
+const AppError = require("./../utils/AppError");
 
 exports.signup = async (req, res) => {
   const newUser = await User.create(req.body);

@@ -1,6 +1,6 @@
 const Menu = require("./../model/menuModel");
 const mongoose = require("mongoose");
-const AppError = require("./../utils/appError");
+const AppError = require("./../utils/AppError");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.getHome = (req, res) => {

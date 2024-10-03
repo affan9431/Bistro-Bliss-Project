@@ -22,15 +22,18 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-mongoose
-  .connect(process.env.DATABASE_URL)
-  .then(() => {
-    console.log("MongoDB connected successfully");
-  })
-  .catch((err) => {
-    throw err;
-  });
+const mongoURI = process.env.DATABASE_URL;
 
+if (!mongoURI) {
+  console.error('MONGODB_URI environment variable is missing');
+  process.exit(1);
+}
+
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+  
 app.use("/api/menu", menuRouter);
 app.use("/", viewRouter);
 app.use("/users", userRouter);

@@ -133,8 +133,12 @@ async function proceedToCheckout() {
 
     // Redirect to Stripe checkout page
     window.location.replace(session.data.session.url);
-  } catch (err) {
-    notyf.error("Error while proceeding to checkout. Please try again.");
+  } catch (error) {
+    const html = error.response.data;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const errorMessage = doc.querySelector(".error__msg").textContent;
+    notyf.error(errorMessage);
   }
 }
 

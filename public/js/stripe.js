@@ -7,7 +7,7 @@ export const bookOrder = async (menuId) => {
   try {
     const session = await axios({
       method: "GET",
-      url: `http://localhost:8080/chechout-session/${menuId}`,
+      url: `/chechout-session/${menuId}`,
     });
 
     window.location.replace(session.data.session.url);

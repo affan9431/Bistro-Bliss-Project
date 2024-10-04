@@ -8,7 +8,7 @@ var notyf = new Notyf({
 
 const login = async (email, password) => {
   try {
-    const res = await axios.post("http://localhost:8080/users/login", {
+    const res = await axios.post("/users/login", {
       email,
       password,
     });

@@ -15,7 +15,7 @@ const whiteButton = document.getElementById("about");
 
 if (whiteButton) {
   whiteButton.addEventListener("click", function () {
-    location.href = "http://localhost:8080/about";
+    location.href = "/about";
   });
 }
 
@@ -69,7 +69,7 @@ if (btn) {
 
 const logout = async () => {
   try {
-    const res = await axios.get("http://localhost:8080/users/logout");
+    const res = await axios.get("/users/logout");
 
     if (res.data.status === "success") {
       location.reload();
@@ -88,7 +88,7 @@ if (logoutBtn) {
 }
 
 async function getMenuById(id) {
-  const url = `http://localhost:8080/api/menu/${id}`;
+  const url = `/api/menu/${id}`;
 
   try {
     const res = await axios.get(url);
@@ -97,7 +97,7 @@ async function getMenuById(id) {
     sessionStorage.setItem("menuData", JSON.stringify(res.data.data));
 
     // Navigate to the menu-detail page
-    location.href = "http://localhost:8080/menu-detail";
+    location.href = "/menu-detail";
   } catch (error) {
     console.error("Error fetching menu data:", error);
   }
@@ -127,7 +127,7 @@ async function proceedToCheckout() {
 
   try {
     // Send cart data to backend
-    const session = await axios.post("http://localhost:8080/checkout-session", {
+    const session = await axios.post("/checkout-session", {
       items: cartItems,
     });
 

@@ -223,7 +223,7 @@ document.querySelector(".book-button").addEventListener("click", async () => {
     notyf.success("The selected time is available!");
     console.log(tableData);
     const res = await axios.post(
-      "http://localhost:8080/api/booking",
+      "/api/booking",
       tableData
     );
 

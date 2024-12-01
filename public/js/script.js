@@ -227,7 +227,6 @@ document.querySelector(".book-button").addEventListener("click", async () => {
       tableData
     );
 
-    console.log(res);
     if ((res.data.data.status = "success")) {
       notyf.success("Booking successful!");
     }

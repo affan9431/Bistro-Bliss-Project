@@ -25,10 +25,15 @@ html(lang="en")
                             .form-group
                                 label(for='time') Time
                                 select#time(name='time')
-                                    option(value='18:30') 18:30
-                                    option(value='19:00') 19:00
-                                    option(value='19:30') 19:30
-                                    option(value='20:00') 20:00
+                                    option(value='5:00 PM') 5:00 PM
+                                    option(value='5:30 PM') 5:30 PM
+                                    option(value='6:00 PM') 6:00 PM
+                                    option(value='6:30 PM') 6:30 PM
+                                    option(value='7:00 PM') 7:00 PM
+                                    option(value='7:30 PM') 7:30 PM
+                                    option(value='8:00 PM') 8:00 PM
+                                    option(value='8:30 PM') 8:30 PM
+                                    option(value='9:00 PM') 9:00 PM
                         .first-row            
                             .form-group
                                 label(for='name') Name
@@ -36,6 +41,13 @@ html(lang="en")
                             .form-group
                                 label(for='phone') Phone
                                 input#phone(type='tel', name='phone', placeholder='x-xxx-xxx-xxxx')
+                            .form-group
+                                label(for='branch') Branch
+                                select#branch(name='branch')
+                                    option(value='sitapura') Sitapura
+                                    option(value='jagatpura') Jagatpura
+                                    option(value='malviya nagar') Malviya Nagar
+                                    option(value='mansrover') Mansrover
                         .form-group
                             label(for='persons') Total Person
                             select#persons(name='persons')
@@ -51,4 +63,3 @@ html(lang="en")
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
         script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
         script(src="/js/script.js")                          
-        

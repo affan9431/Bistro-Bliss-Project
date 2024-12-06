@@ -1087,6 +1087,60 @@ p.signup-link {
   color: #636e72;
 }
 
+/* Table layout for booking list */
+.show-table {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.show-table h2 {
+  text-align: center;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+#show-table-head{
+  text-align: center;
+  margin-top: 50px;
+}
+/* No bookings available message */
+.no-booking-message {
+  text-align: center;
+  padding: 20px;
+  color: #555;
+}
+
+#booking-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.booking-card {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.booking-card p {
+  margin: 8px 0;
+}
+
+.booking-card strong {
+  font-weight: bold;
+  color: #333;
+}
+
+.booking-card span {
+  color: #555;
+}
+
 /* Quantity Controls */
 .item-quantity {
   display: flex;
@@ -1151,7 +1205,7 @@ p.signup-link {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.main-error{
+.main-error {
   width: 100vw;
   height: 100vh;
 }
@@ -1478,6 +1532,14 @@ p.signup-link {
   }
 
   .order-details-container {
+    padding: 15px;
+  }
+
+  .show-table {
+    padding: 10px;
+  }
+
+  .booking-card {
     padding: 15px;
   }
 }

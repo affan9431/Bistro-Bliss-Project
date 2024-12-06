@@ -8,25 +8,38 @@ var notyf = new Notyf({
 
 const login = async (email, password) => {
   try {
-    const res = await axios.post("/users/login", {
-      email,
-      password,
-    });
+    const res = await axios.post("/users/login", { email, password });
 
-    if (res.data.status === "success") {
-      notyf.success("Login successful");
-      window.setTimeout(() => {
-        location.assign("/");
-      }, 1500);
+    if (res && res.data) {
+      if (res.data.status === "success") {
+        const token = res.data.data.token;
+        const decoded = jwtDecode(token);
+        const id = JSON.parse(localStorage.getItem("userID"));
+        if (id !== decoded.id) localStorage.setItem("userID", decoded.id);
+        else notyf.error("Login failed: " + res.data.message);
+
+        notyf.success("Login successful");
+        window.setTimeout(() => {
+          location.assign("/");
+        }, 1500);
+      } else {
+        notyf.error("Login failed: " + res.data.message);
+      }
     } else {
-      notyf.error("Login failed: " + res.data.message);
+      notyf.error("Invalid response from server.");
     }
   } catch (error) {
-    const html = error.response.data;
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
-    const errorMessage = doc.querySelector(".error__msg").textContent;
-    notyf.error(errorMessage);
+    if (error.response) {
+      // Handle server error
+      const html = error.response.data;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      const errorMessage = doc.querySelector(".error__msg").textContent;
+      notyf.error(errorMessage);
+    } else {
+      // Handle network or other errors
+      notyf.error("An error occurred: " + error.message);
+    }
   }
 };
 

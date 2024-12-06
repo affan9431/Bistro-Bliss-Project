@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Bistro Bliss | Booking Details
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    include _header
+    h1#show-table-head Booking Details
+
+    // Check if there are any bookings
+    if booking.length > 0
+      div.show-table
+        h2 Bookings List
+        div#booking-details
+          each bookingItem in booking
+            div.booking-card
+              p
+                strong Name:
+                span= bookingItem.name
+              p
+                strong Phone:
+                span= bookingItem.phone
+              p
+                strong Date:
+                span= bookingItem.date
+              p
+                strong Start Time:
+                span= bookingItem.startTime
+              p
+                strong End Time:
+                span= bookingItem.endTime
+              p
+                strong Branch:
+                span= bookingItem.branch
+              p
+                strong Persons:
+                span= bookingItem.persons
+    else
+      div.no-booking-message
+        p No bookings available at the moment.
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js")
+    script(src="/js/booking.js")

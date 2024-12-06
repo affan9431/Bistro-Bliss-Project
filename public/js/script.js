@@ -145,87 +145,35 @@ async function proceedToCheckout() {
 document.querySelector(".book-button").addEventListener("click", async () => {
   // Fetch user input
   const date = document.getElementById("date").value;
-  const time = document.getElementById("time").value;
+  const startTime = document.getElementById("start-time").value;
+  const endTime = document.getElementById("end-time").value;
   const branch = document.getElementById("branch").value.toLowerCase();
   const name = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;
   const persons = document.getElementById("persons").value;
+  const id = localStorage.getItem("userID");
+  console.log(id);
 
   const tableData = {
     date: date,
-    time: time,
+    startTime: startTime,
+    endTime: endTime,
     branch: branch,
     name: name,
     phone: phone,
     persons: persons,
+    createdBy: id,
   };
 
-  const availabilityData = {
-    sitapura: {
-      "2024-09-14": {
-        "5:00 PM": false,
-        "5:30 PM": true,
-        "6:00 PM": true,
-        "6:30 PM": false,
-        "7:00 PM": true,
-        "7:30 PM": false,
-        "8:00 PM": true,
-        "8:30 PM": true,
-        "9:00 PM": false,
-      },
-    },
-    jagatpura: {
-      "2024-09-14": {
-        "5:00 PM": true,
-        "5:30 PM": true,
-        "6:00 PM": false,
-        "6:30 PM": true,
-        "7:00 PM": true,
-        "7:30 PM": true,
-        "8:00 PM": false,
-        "8:30 PM": true,
-        "9:00 PM": true,
-      },
-    },
-    malviya_nagar: {
-      "2024-09-14": {
-        "5:00 PM": true,
-        "5:30 PM": false,
-        "6:00 PM": true,
-        "6:30 PM": true,
-        "7:00 PM": false,
-        "7:30 PM": true,
-        "8:00 PM": false,
-        "8:30 PM": false,
-        "9:00 PM": true,
-      },
-    },
-    mansrover: {
-      "2024-09-14": {
-        "5:00 PM": false,
-        "5:30 PM": true,
-        "6:00 PM": false,
-        "6:30 PM": true,
-        "7:00 PM": true,
-        "7:30 PM": false,
-        "8:00 PM": true,
-        "8:30 PM": false,
-        "9:00 PM": true,
-      },
-    },
-  };
-
-  if (
-    availabilityData[branch] &&
-    availabilityData[branch][date] &&
-    availabilityData[branch][date][time] === true
-  ) {
+  if (tableData) {
     notyf.success("The selected time is available!");
     console.log(tableData);
     const res = await axios.post(
-      "/api/booking",
+      "http://localhost:8080/api/booking",
       tableData
     );
+
+    console.log(res);
 
     if ((res.data.data.status = "success")) {
       notyf.success("Booking successful!");

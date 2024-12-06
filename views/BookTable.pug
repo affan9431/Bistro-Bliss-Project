@@ -8,7 +8,6 @@ html(lang="en")
         link(rel="stylesheet", href="/css/style.css")
         link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
 
-
     body 
         include _header
         .booking-head
@@ -23,8 +22,8 @@ html(lang="en")
                                 label(for='date') Date
                                 input#date(type='date', name='date', value='2024-09-14')
                             .form-group
-                                label(for='time') Time
-                                select#time(name='time')
+                                label(for='start-time') Start Time
+                                select#start-time(name='start-time')
                                     option(value='5:00 PM') 5:00 PM
                                     option(value='5:30 PM') 5:30 PM
                                     option(value='6:00 PM') 6:00 PM
@@ -34,6 +33,21 @@ html(lang="en")
                                     option(value='8:00 PM') 8:00 PM
                                     option(value='8:30 PM') 8:30 PM
                                     option(value='9:00 PM') 9:00 PM
+                            .form-group
+                                label(for='end-time') End Time
+                                select#end-time(name='end-time')
+                                    option(value='5:30 PM') 5:30 PM
+                                    option(value='6:00 PM') 6:00 PM
+                                    option(value='6:30 PM') 6:30 PM
+                                    option(value='7:00 PM') 7:00 PM
+                                    option(value='7:30 PM') 7:30 PM
+                                    option(value='8:00 PM') 8:00 PM
+                                    option(value='8:30 PM') 8:30 PM
+                                    option(value='9:00 PM') 9:00 PM
+                                    option(value='9:30 PM') 9:30 PM
+                                    option(value='10:00 PM') 10:00 PM
+                                    option(value='10:30 PM') 10:30 PM
+                                    option(value='11:00 PM') 11:00 PM
                         .first-row            
                             .form-group
                                 label(for='name') Name
@@ -62,4 +76,4 @@ html(lang="en")
             Copyright © 2023 Hashtag Developer. All Rights Reserved.
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
         script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
-        script(src="/js/script.js")                          
+        script(src="/js/script.js")

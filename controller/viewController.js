@@ -1,4 +1,5 @@
 const Menu = require("./../model/menuModel");
+const Booking = require("./../model/bookModel");
 const mongoose = require("mongoose");
 const AppError = require("./../utils/AppError");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
@@ -85,6 +86,12 @@ exports.getCheckoutSession = async (req, res, next) => {
 
 exports.getOrderDetail = (req, res) => {
   res.status(200).render("OrderDetail");
+};
+exports.getShowTableBookingPage = async (req, res) => {
+  const booking = await Booking.find();
+  res.status(200).render("showBooking", {
+    booking,
+  });
 };
 
 exports.getMenuById = async (req, res, next) => {

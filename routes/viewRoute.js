@@ -18,6 +18,9 @@ router
 router
   .route("/booking")
   .get(authController.protect, viewController.getBookingTablePage);
+router
+  .route("/showTableBooking")
+  .get(authController.protect, viewController.getShowTableBookingPage);
 router.route("/login").get(authController.isLoggedIn, viewController.loginPage);
 router
   .route("/signup")

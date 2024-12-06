@@ -15,3 +15,19 @@ exports.createBooking = async (req, res, next) => {
     next(new AppError(err.message, 400));
   }
 };
+
+exports.getAllBookings = async (req, res, next) => {
+  try {
+    const bookings = await Booking.find();
+
+    res.status(200).json({
+      status: "success",
+      results: bookings.length,
+      data: {
+        bookings,
+      },
+    });
+  } catch (err) {
+    next(new AppError(err.message, 400));
+  }
+};

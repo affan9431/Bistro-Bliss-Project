@@ -170,8 +170,6 @@ document.querySelector(".book-button").addEventListener("click", async () => {
     console.log(tableData);
     const res = await axios.post("/api/booking", tableData);
 
-    console.log(res);
-
     if ((res.data.data.status = "success")) {
       notyf.success("Booking successful!");
     }

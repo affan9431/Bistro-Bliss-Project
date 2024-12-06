@@ -12,6 +12,11 @@ router.post(
   authController.protect, // Ensure the user is logged in
   viewController.getCheckoutSession
 );
+router.post(
+  "/checkout-session-1",
+  authController.protect, // Ensure the user is logged in
+  viewController.getCheckoutSession1
+);
 router
   .route("/order-detail")
   .get(authController.protect, viewController.getOrderDetail);

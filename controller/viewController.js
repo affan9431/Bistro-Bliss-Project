@@ -1,6 +1,7 @@
 const Menu = require("./../model/menuModel");
 const Booking = require("./../model/bookModel");
 const mongoose = require("mongoose");
+const Email = require("../public/js/email");
 const AppError = require("./../utils/AppError");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -51,6 +52,7 @@ exports.getCart = (req, res) => {
 
 exports.getCheckoutSession = async (req, res, next) => {
   const items = req.body.items;
+  console.log(items);
 
   // Create line items for Stripe checkout session
   const lineItems = items.map((item) => {
@@ -77,11 +79,75 @@ exports.getCheckoutSession = async (req, res, next) => {
     line_items: lineItems,
   });
 
+  const url = `${req.protocol}://${req.get("host")}`;
+  const user = { email: req.user.email, name: req.user.name }; // Provide user details
+  await new Email(user, url).sendOrderConfirmed();
+
   // Send the session ID back to the frontend
   res.status(200).json({
     status: "success",
     session,
   });
+};
+
+exports.getCheckoutSession1 = async (req, res, next) => {
+  const tableData = req.body.items; // Get tableData from the request body
+  console.log(tableData);
+
+  // Create custom line items or use metadata to pass the booking information
+  const lineItems = [
+    {
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: `Table Booking at ${tableData.branch}`, // Custom product name
+          description: `Booking for ${tableData.persons} persons on ${tableData.date} from ${tableData.startTime} to ${tableData.endTime}`,
+        },
+        unit_amount: 5000, // Use a fixed amount for the booking, or calculate it based on your logic
+      },
+      quantity: 1, // Single booking
+    },
+  ];
+
+  try {
+    // Create Stripe checkout session
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      success_url: `${req.protocol}://${req.get("host")}/showTableBooking`,
+      cancel_url: `${req.protocol}://${req.get("host")}/menu`,
+      customer_email: req.user.email,
+      mode: "payment",
+      line_items: lineItems,
+      metadata: {
+        date: tableData.date,
+        startTime: tableData.startTime,
+        endTime: tableData.endTime,
+        branch: tableData.branch,
+        name: tableData.name,
+        phone: tableData.phone,
+        persons: tableData.persons,
+        createdBy: tableData.createdBy,
+      },
+    });
+
+    const url = `${req.protocol}://${req.get("host")}`;
+    const user = { email: req.user.email, name: req.user.name }; // Provide user details
+    await new Email(user, url).sendOrderConfirmed(); // Send email notification
+
+    // Send the session URL back to frontend for redirect
+    res.status(200).json({
+      status: "success",
+      session: {
+        url: session.url,
+      },
+    });
+  } catch (error) {
+    console.error("Error creating checkout session:", error);
+    res.status(500).json({
+      status: "error",
+      message: "Failed to create checkout session",
+    });
+  }
 };
 
 exports.getOrderDetail = (req, res) => {

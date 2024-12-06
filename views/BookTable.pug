@@ -71,7 +71,16 @@ html(lang="en")
                                 option(value='4') 4 Persons
                                 option(value='5') 5 Persons
                         button.book-button(type='button') Book A Table
-
+                        
+                // Modal for Payment Method
+                #payment-modal.modal
+                    .modal-content
+                        h2 Choose Payment Method
+                        .payment-methods
+                            button(id="cash" class="payment-btn") Cash
+                            button(id="online" class="payment-btn" onclick="proceedToBooked()") Pay Online
+                        button#close-modal Close Modal
+ 
         footer.footer 
             Copyright © 2023 Hashtag Developer. All Rights Reserved.
         script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")

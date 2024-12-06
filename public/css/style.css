@@ -91,12 +91,12 @@ header {
   top: 0;
   z-index: 999;
 }
-nav.navbar {
+nav.navbar1 {
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.nav-container {
+.nav-container1 {
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -113,6 +113,9 @@ nav.navbar {
   font-family: "Mochiy Pop One", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+.alert-warning {
+  width: 100vw;
 }
 
 ul.nav-items {
@@ -464,7 +467,7 @@ main {
 .review-container {
   width: 100%;
   padding: 0 8%;
-  min-height: 100vh;
+  min-height: 80vh;
   margin-top: 8%;
 }
 
@@ -477,6 +480,7 @@ main {
   justify-content: space-between;
   padding: 20px;
   flex-wrap: wrap;
+  gap: 30px;
 }
 
 .review-card {
@@ -522,6 +526,55 @@ main {
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.payment-btn {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.payment-btn:hover {
+  background-color: #45a049;
+}
+
+#close-modal {
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#close-modal:hover {
+  background-color: #d32f2f;
 }
 
 /* About Page */
@@ -1103,7 +1156,7 @@ p.signup-link {
   margin-bottom: 20px;
 }
 
-#show-table-head{
+#show-table-head {
   text-align: center;
   margin-top: 50px;
 }

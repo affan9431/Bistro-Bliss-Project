@@ -6,7 +6,7 @@ const fetchBookingDetails = async () => {
 
     // Assuming the response contains the booking data
     const bookingData = response.data.data.bookings;
-    console.log(bookingData);
+    console.log(bookingData.createdBy.name);
 
     bookingData.map((booking) => {
       document.getElementById("name").innerText = booking.name;

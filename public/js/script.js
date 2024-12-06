@@ -143,6 +143,7 @@ async function proceedToCheckout() {
 }
 
 const bookBtn = document.querySelector(".book-button");
+
 if (bookBtn) {
   bookBtn.addEventListener("click", async () => {
     // Fetch user input
@@ -154,7 +155,6 @@ if (bookBtn) {
     const phone = document.getElementById("phone").value;
     const persons = document.getElementById("persons").value;
     const id = localStorage.getItem("userID");
-    console.log(id);
 
     const tableData = {
       date: date,
@@ -169,11 +169,10 @@ if (bookBtn) {
 
     if (tableData) {
       notyf.success("The selected time is available!");
-      console.log(tableData);
       const res = await axios.post("/api/booking", tableData);
-
-      if ((res.data.data.status = "success")) {
-        notyf.success("Booking successful!");
+      if (res.data.status === "success") {
+        // Open the payment modal
+        document.getElementById("payment-modal").style.display = "block";
       }
     } else {
       notyf.error(
@@ -182,3 +181,112 @@ if (bookBtn) {
     }
   });
 }
+
+// Close modal functionality
+document.getElementById("close-modal").addEventListener("click", function () {
+  document.getElementById("payment-modal").style.display = "none";
+});
+
+// Handle Cash payment selection
+document.getElementById("cash").addEventListener("click", function () {
+  notyf.success("You chose Cash as your payment method.");
+  document.getElementById("payment-modal").style.display = "none";
+});
+
+// Handle Online payment selection and call the backend API
+document.getElementById("online").addEventListener("click", async function () {
+  notyf.success("You chose Pay Online.");
+
+  // Get the booking details to send to the backend
+  const date = document.getElementById("date").value;
+  const startTime = document.getElementById("start-time").value;
+  const endTime = document.getElementById("end-time").value;
+  const branch = document.getElementById("branch").value.toLowerCase();
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const persons = document.getElementById("persons").value;
+  const id = localStorage.getItem("userID");
+
+  const tableData = {
+    date: date,
+    startTime: startTime,
+    endTime: endTime,
+    branch: branch,
+    name: name,
+    phone: phone,
+    persons: persons,
+    createdBy: id,
+  };
+
+  // Send booking data to create a checkout session
+  const res = await axios.post("/checkout-session-1", { items: tableData });
+
+  if (res.data.status === "success") {
+    // Redirect to Stripe checkout page or handle accordingly
+    window.location.href = res.data.session.url; // Assuming the backend sends the Stripe session URL
+  } else {
+    notyf.error("Failed to create checkout session.");
+  }
+
+  document.getElementById("payment-modal").style.display = "none";
+});
+
+const submitReviewBtn = document.querySelector("#submitReview");
+
+submitReviewBtn &&
+  submitReviewBtn.addEventListener("click", async (event) => {
+    event.preventDefault();
+    const reviewTitle = document.getElementById("reviewTitle").value;
+    const reviewDesc = document.getElementById("reviewDesc").value;
+    const id = localStorage.getItem("userID");
+
+    const review = {
+      title: reviewTitle,
+      description: reviewDesc,
+      createdBy: id,
+    };
+
+    if (review) {
+      const res = await axios.post("http://localhost:8080/api/review", review);
+      notyf.success("Review submitted successfully!");
+      console.log(res);
+    } else {
+      notyf.error("Please fill in all fields");
+    }
+  });
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // Fetch reviews from the API
+    const response = await axios.get("http://localhost:8080/api/review");
+    const reviews = response.data.reviews; // Adjust this to match your API response structure
+
+    const reviewContainer = document.querySelector(".review-card-container");
+
+    // Clear existing content (if any)
+    reviewContainer.innerHTML = "";
+
+    // Loop through the reviews and dynamically generate cards
+    reviews.forEach((review) => {
+      const reviewCard = document.createElement("div");
+      reviewCard.classList.add("review-card");
+
+      reviewCard.innerHTML = `
+          <h2>${review.title}</h2>
+          <p class="size">${review.description}</p>
+          <div class="author">
+            <img src="/images/user-profile.png" alt="${
+              review.createdBy?.name || "Unknown"
+            }">
+            <p>${review.createdBy?.name || "Anonymous"}<br>${new Date(
+        review.createdAt
+      ).toLocaleDateString()}</p>
+          </div>
+        `;
+
+      reviewContainer.appendChild(reviewCard);
+    });
+  } catch (error) {
+    console.error("Failed to fetch reviews:", error);
+  }
+});

@@ -55,4 +55,7 @@ module.exports = class Email {
   async sendWelcome() {
     await this.send("welcome", "Welcome to Food Delivery App");
   }
+  async sendOrderConfirmed() {
+    await this.send("orderConfirmed", "Your order has been confirmed");
+  }
 };

@@ -7,9 +7,13 @@ const AppError = require("./../utils/AppError");
 exports.signup = async (req, res) => {
   const newUser = await User.create(req.body);
 
-  const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+  const token = jwt.sign(
+    { id: newUser._id, name: newUser.name },
+    process.env.JWT_SECRET_KEY,
+    {
+      expiresIn: process.env.JWT_EXPIRE,
+    }
+  );
 
   const url = `${req.protocol}://${req.get("host")}`;
 
@@ -36,9 +40,13 @@ exports.login = async (req, res, next) => {
     return next(new AppError("Invalid credentials.", 404));
   }
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+  const token = jwt.sign(
+    { id: user._id, name: user.name },
+    process.env.JWT_SECRET_KEY,
+    {
+      expiresIn: process.env.JWT_EXPIRE,
+    }
+  );
 
   res.cookie("jwt", token, {
     expires: new Date(

@@ -168,10 +168,7 @@ document.querySelector(".book-button").addEventListener("click", async () => {
   if (tableData) {
     notyf.success("The selected time is available!");
     console.log(tableData);
-    const res = await axios.post(
-      "http://localhost:8080/api/booking",
-      tableData
-    );
+    const res = await axios.post("/api/booking", tableData);
 
     console.log(res);
 

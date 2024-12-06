@@ -2,7 +2,7 @@
 const fetchBookingDetails = async () => {
   try {
     // Make an HTTP GET request to the backend API
-    const response = await axios.get("http://localhost:8080/api/booking");
+    const response = await axios.get("/api/booking");
 
     // Assuming the response contains the booking data
     const bookingData = response.data.data.bookings;

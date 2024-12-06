@@ -247,7 +247,7 @@ submitReviewBtn &&
     };
 
     if (review) {
-      const res = await axios.post("http://localhost:8080/api/review", review);
+      const res = await axios.post("/api/review", review);
       notyf.success("Review submitted successfully!");
       console.log(res);
     } else {
@@ -258,7 +258,7 @@ submitReviewBtn &&
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     // Fetch reviews from the API
-    const response = await axios.get("http://localhost:8080/api/review");
+    const response = await axios.get("/api/review");
     const reviews = response.data.reviews; // Adjust this to match your API response structure
 
     const reviewContainer = document.querySelector(".review-card-container");

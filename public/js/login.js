@@ -14,7 +14,7 @@ const login = async (email, password) => {
       if (res.data.status === "success") {
         const token = res.data.data.token;
         const decoded = jwtDecode(token);
-        const id = JSON.parse(localStorage.getItem("userID"));
+        const id = localStorage.getItem("userID");
         if (id !== decoded.id) localStorage.setItem("userID", decoded.id);
         else notyf.error("Login failed: " + res.data.message);
 

@@ -142,40 +142,43 @@ async function proceedToCheckout() {
   }
 }
 
-document.querySelector(".book-button").addEventListener("click", async () => {
-  // Fetch user input
-  const date = document.getElementById("date").value;
-  const startTime = document.getElementById("start-time").value;
-  const endTime = document.getElementById("end-time").value;
-  const branch = document.getElementById("branch").value.toLowerCase();
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const persons = document.getElementById("persons").value;
-  const id = localStorage.getItem("userID");
-  console.log(id);
+const bookBtn = document.querySelector(".book-button");
+if (bookBtn) {
+  bookBtn.addEventListener("click", async () => {
+    // Fetch user input
+    const date = document.getElementById("date").value;
+    const startTime = document.getElementById("start-time").value;
+    const endTime = document.getElementById("end-time").value;
+    const branch = document.getElementById("branch").value.toLowerCase();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const persons = document.getElementById("persons").value;
+    const id = localStorage.getItem("userID");
+    console.log(id);
 
-  const tableData = {
-    date: date,
-    startTime: startTime,
-    endTime: endTime,
-    branch: branch,
-    name: name,
-    phone: phone,
-    persons: persons,
-    createdBy: id,
-  };
+    const tableData = {
+      date: date,
+      startTime: startTime,
+      endTime: endTime,
+      branch: branch,
+      name: name,
+      phone: phone,
+      persons: persons,
+      createdBy: id,
+    };
 
-  if (tableData) {
-    notyf.success("The selected time is available!");
-    console.log(tableData);
-    const res = await axios.post("/api/booking", tableData);
+    if (tableData) {
+      notyf.success("The selected time is available!");
+      console.log(tableData);
+      const res = await axios.post("/api/booking", tableData);
 
-    if ((res.data.data.status = "success")) {
-      notyf.success("Booking successful!");
+      if ((res.data.data.status = "success")) {
+        notyf.success("Booking successful!");
+      }
+    } else {
+      notyf.error(
+        "Sorry, the selected time is not available. Please choose a different time."
+      );
     }
-  } else {
-    notyf.error(
-      "Sorry, the selected time is not available. Please choose a different time."
-    );
-  }
-});
+  });
+}

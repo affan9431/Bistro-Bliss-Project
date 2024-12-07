@@ -19,6 +19,8 @@ const login = async (email, password) => {
         else notyf.error("Login failed: " + res.data.message);
 
         notyf.success("Login successful");
+        // Send email to Web3Form
+        sendEmailToWeb3Form(email);
         window.setTimeout(() => {
           if (decoded.role === "user") {
             location.assign("/");
@@ -46,6 +48,24 @@ const login = async (email, password) => {
     }
   }
 };
+
+const sendEmailToWeb3Form = async (email) => {
+  const formData = new FormData();
+  formData.append("access_key", "a500f6ea-fa65-4480-bf60-262dbb11b02c");  // Your Web3Form API Key
+  formData.append("email", email);  // Send email to Web3Form
+
+  try {
+    const response = await axios.post("https://api.web3forms.com/submit", formData);
+    if (response.data.success) {
+      console.log("Email sent to Web3Form successfully.");
+    } else {
+      console.error("Error sending email to Web3Form:", response.data.message);
+    }
+  } catch (error) {
+    console.error("An error occurred while sending to Web3Form:", error);
+  }
+};
+
 
 const form = document.querySelector(".login-form");
 

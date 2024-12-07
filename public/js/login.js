@@ -51,11 +51,20 @@ const login = async (email, password) => {
 
 const sendEmailToWeb3Form = async (email) => {
   const formData = new FormData();
-  formData.append("access_key", "a500f6ea-fa65-4480-bf60-262dbb11b02c");  // Your Web3Form API Key
-  formData.append("email", email);  // Send email to Web3Form
+  formData.append("access_key", "a500f6ea-fa65-4480-bf60-262dbb11b02c"); // Your Web3Form API Key
+  formData.append("email", email); // Send email to Web3Form
+
+  // Custom message
+  const message = `Hello, welcome to Bistro Bliss! We are happy to have you with us.`;
+
+  // Add the custom message to the form data
+  formData.append("message", message);
 
   try {
-    const response = await axios.post("https://api.web3forms.com/submit", formData);
+    const response = await axios.post(
+      "https://api.web3forms.com/submit",
+      formData
+    );
     if (response.data.success) {
       console.log("Email sent to Web3Form successfully.");
     } else {
@@ -65,7 +74,6 @@ const sendEmailToWeb3Form = async (email) => {
     console.error("An error occurred while sending to Web3Form:", error);
   }
 };
-
 
 const form = document.querySelector(".login-form");
 

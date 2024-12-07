@@ -163,3 +163,8 @@ exports.getShowTableBookingPage = async (req, res) => {
 exports.getMenuById = async (req, res, next) => {
   res.status(200).render("MenuDetail");
 };
+
+
+exports.getUser = async (req, res, next) => {
+  res.status(200).render("userPage");
+}

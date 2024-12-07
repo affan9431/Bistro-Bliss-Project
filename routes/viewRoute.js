@@ -38,5 +38,8 @@ router
 router
   .route("/menu-detail")
   .get(authController.isLoggedIn, viewController.getMenuById);
+router
+  .route("/user-profile")
+  .get(authController.isLoggedIn, viewController.getUser);
 
 module.exports = router;

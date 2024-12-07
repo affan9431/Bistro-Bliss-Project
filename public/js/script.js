@@ -183,53 +183,59 @@ if (bookBtn) {
 }
 
 // Close modal functionality
-document.getElementById("close-modal").addEventListener("click", function () {
-  document.getElementById("payment-modal").style.display = "none";
-});
+const closeModel = document.getElementById("close-modal");
+closeModel &&
+  closeModel.addEventListener("click", function () {
+    document.getElementById("payment-modal").style.display = "none";
+  });
 
 // Handle Cash payment selection
-document.getElementById("cash").addEventListener("click", function () {
-  notyf.success("You chose Cash as your payment method.");
-  document.getElementById("payment-modal").style.display = "none";
-});
+const cash = document.getElementById("cash");
+cash &&
+  cash.addEventListener("click", function () {
+    notyf.success("You chose Cash as your payment method.");
+    document.getElementById("payment-modal").style.display = "none";
+  });
 
 // Handle Online payment selection and call the backend API
-document.getElementById("online").addEventListener("click", async function () {
-  notyf.success("You chose Pay Online.");
+const online = document.getElementById("online");
+online &&
+  online.addEventListener("click", async function () {
+    notyf.success("You chose Pay Online.");
 
-  // Get the booking details to send to the backend
-  const date = document.getElementById("date").value;
-  const startTime = document.getElementById("start-time").value;
-  const endTime = document.getElementById("end-time").value;
-  const branch = document.getElementById("branch").value.toLowerCase();
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const persons = document.getElementById("persons").value;
-  const id = localStorage.getItem("userID");
+    // Get the booking details to send to the backend
+    const date = document.getElementById("date").value;
+    const startTime = document.getElementById("start-time").value;
+    const endTime = document.getElementById("end-time").value;
+    const branch = document.getElementById("branch").value.toLowerCase();
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const persons = document.getElementById("persons").value;
+    const id = localStorage.getItem("userID");
 
-  const tableData = {
-    date: date,
-    startTime: startTime,
-    endTime: endTime,
-    branch: branch,
-    name: name,
-    phone: phone,
-    persons: persons,
-    createdBy: id,
-  };
+    const tableData = {
+      date: date,
+      startTime: startTime,
+      endTime: endTime,
+      branch: branch,
+      name: name,
+      phone: phone,
+      persons: persons,
+      createdBy: id,
+    };
 
-  // Send booking data to create a checkout session
-  const res = await axios.post("/checkout-session-1", { items: tableData });
+    // Send booking data to create a checkout session
+    const res = await axios.post("/checkout-session-1", { items: tableData });
 
-  if (res.data.status === "success") {
-    // Redirect to Stripe checkout page or handle accordingly
-    window.location.href = res.data.session.url; // Assuming the backend sends the Stripe session URL
-  } else {
-    notyf.error("Failed to create checkout session.");
-  }
+    if (res.data.status === "success") {
+      // Redirect to Stripe checkout page or handle accordingly
+      window.location.href = res.data.session.url; // Assuming the backend sends the Stripe session URL
+    } else {
+      notyf.error("Failed to create checkout session.");
+    }
 
-  document.getElementById("payment-modal").style.display = "none";
-});
+    document.getElementById("payment-modal").style.display = "none";
+  });
 
 const submitReviewBtn = document.querySelector("#submitReview");
 
@@ -249,6 +255,7 @@ submitReviewBtn &&
     if (review) {
       const res = await axios.post("/api/review", review);
       notyf.success("Review submitted successfully!");
+      window.location.reload();
       console.log(res);
     } else {
       notyf.error("Please fill in all fields");
@@ -264,14 +271,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     const reviewContainer = document.querySelector(".review-card-container");
 
     // Clear existing content (if any)
-    reviewContainer.innerHTML = "";
+    if (reviewContainer) {
+      reviewContainer.innerHTML = "";
+    }
 
     // Loop through the reviews and dynamically generate cards
-    reviews.forEach((review) => {
-      const reviewCard = document.createElement("div");
-      reviewCard.classList.add("review-card");
+    reviews &&
+      reviews.forEach((review) => {
+        const reviewCard = document.createElement("div");
+        reviewCard.classList.add("review-card");
 
-      reviewCard.innerHTML = `
+        reviewCard.innerHTML = `
           <h2>${review.title}</h2>
           <p class="size">${review.description}</p>
           <div class="author">
@@ -279,14 +289,39 @@ document.addEventListener("DOMContentLoaded", async () => {
               review.createdBy?.name || "Unknown"
             }">
             <p>${review.createdBy?.name || "Anonymous"}<br>${new Date(
-        review.createdAt
-      ).toLocaleDateString()}</p>
+          review.createdAt
+        ).toLocaleDateString()}</p>
           </div>
         `;
 
-      reviewContainer.appendChild(reviewCard);
-    });
+        if (reviewContainer) reviewContainer.appendChild(reviewCard);
+      });
   } catch (error) {
     console.error("Failed to fetch reviews:", error);
   }
 });
+
+// Open the modal
+function openModal() {
+  const modal = document.getElementById("checkout-modal");
+  modal.style.display = "block";
+}
+
+// Close the modal
+function closeModal() {
+  const modal = document.getElementById("checkout-modal");
+  modal.style.display = "none";
+}
+
+// Submit the checkout form
+function submitCheckout(event) {
+  event.preventDefault(); // Prevent default form submission
+
+  // Collect form data
+  const name = document.getElementById("name").value;
+  const address = document.getElementById("address").value;
+  const phone = document.getElementById("phone").value;
+
+  // Perform validation or send data to the server
+  console.log({ name, address, phone });
+}

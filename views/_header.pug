@@ -22,7 +22,7 @@ header.head
             .user-profile    
                 if user
                     a.nav__el.nav__el--logout#logout Logout
-                    a.nav__el(href='#')
+                    a.nav__el(href='/user-profile')
                         img.nav__user-img(src='/images/user-profile.png' alt=`Photo of ${user.name}`)
                         span= user.name.split(' ')[0] 
                 else         
@@ -51,7 +51,7 @@ header.head
             .user-profile-mb    
                 if user
                     a.nav__el.nav__el--logout#logout Logout
-                    a.nav__el(href='#')
+                    a.nav__el(href='/user-profile')
                         img.nav__user-img(src='/images/user-profile.png' alt=`Photo of ${user.name}`)
                         span= user.name.split(' ')[0] 
                 else         

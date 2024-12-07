@@ -41,5 +41,12 @@ router
 router
   .route("/user-profile")
   .get(authController.isLoggedIn, viewController.getUser);
+router
+  .route("/admin-profile")
+  .get(
+    authController.protect,
+    authController.restrictTo("admin"),
+    viewController.getAdmin
+  );
 
 module.exports = router;

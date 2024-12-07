@@ -72,7 +72,7 @@ const logout = async () => {
     const res = await axios.get("/users/logout");
 
     if (res.data.status === "success") {
-      location.reload();
+      location.assign("/login");
     }
   } catch (error) {
     console.log(error.response);
@@ -314,7 +314,8 @@ function closeModal() {
 }
 
 // Submit the checkout form
-function submitCheckout(event) {
+async function submitCheckout(event) {
+  const cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
   event.preventDefault(); // Prevent default form submission
 
   // Collect form data
@@ -322,6 +323,39 @@ function submitCheckout(event) {
   const address = document.getElementById("address").value;
   const phone = document.getElementById("phone").value;
 
-  // Perform validation or send data to the server
-  console.log({ name, address, phone });
+  const data = {
+    cartItems: cartItems, // Pass the array of items to be purchased as a parameter in the request body object below
+    name: name,
+    address: address,
+    phone: phone,
+  };
+
+  const res = await axios.post("/api/Food", data);
+  notyf.success("Checkout successful! You are redirect to payment page!");
+  console.log(res);
+}
+
+function showTab(tabId) {
+  const tabs = document.querySelectorAll(".tab-content");
+  tabs.forEach((tab) => (tab.style.display = "none"));
+  document.getElementById(tabId).style.display = "block";
+}
+
+const addMenu = document.querySelector("#AddMenu");
+
+if (addMenu) {
+
+  addMenu.addEventListener("click", async () => {
+    const name = document.getElementById("name").value;
+    const description = document.getElementById("description").value;
+    const price = document.getElementById("price").value;
+    const data = {
+      name: name,
+      price: price,
+      description: description,
+    };
+    console.log(data);
+    const res = await axios.post("/api/menu", data);
+    notyf.success("Add menu successful!");
+  });
 }

@@ -8,7 +8,7 @@ exports.signup = async (req, res) => {
   const newUser = await User.create(req.body);
 
   const token = jwt.sign(
-    { id: newUser._id, name: newUser.name },
+    { id: newUser._id, name: newUser.name, role: newUser.role },
     process.env.JWT_SECRET_KEY,
     {
       expiresIn: process.env.JWT_EXPIRE,
@@ -41,7 +41,7 @@ exports.login = async (req, res, next) => {
   }
 
   const token = jwt.sign(
-    { id: user._id, name: user.name },
+    { id: user._id, name: user.name, role: user.role },
     process.env.JWT_SECRET_KEY,
     {
       expiresIn: process.env.JWT_EXPIRE,
@@ -54,6 +54,10 @@ exports.login = async (req, res, next) => {
     ),
     httpOnly: true,
   });
+
+  const url = `${req.protocol}://${req.get("host")}`;
+
+  await new Email(user, url).sendWelcome();
 
   res.status(200).json({
     status: "success",
@@ -137,4 +141,19 @@ exports.isLoggedIn = async (req, res, next) => {
     }
   }
   next();
+};
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError(
+          "You are not admin! You do not have permission to perform to this action",
+          403
+        )
+      );
+    }
+
+    next();
+  };
 };

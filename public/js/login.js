@@ -20,7 +20,11 @@ const login = async (email, password) => {
 
         notyf.success("Login successful");
         window.setTimeout(() => {
-          location.assign("/");
+          if (decoded.role === "user") {
+            location.assign("/");
+          } else {
+            location.assign("/admin-profile");
+          }
         }, 1500);
       } else {
         notyf.error("Login failed: " + res.data.message);

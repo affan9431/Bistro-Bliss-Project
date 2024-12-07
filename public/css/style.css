@@ -1044,6 +1044,89 @@ p.signup-link {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.tab-button:hover {
+  background-color: #0056b3;
+}
+
+.tab-content {
+  display: none;
+}
+
+#tableBooking {
+  display: block; /* Show the Table Booking tab by default */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.create-menu {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+}
+.create-menu h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+.create-menu label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+.create-menu input,
+.create-menu select,
+.create-menu button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.create-menu button {
+  background-color: #4caf50;
+  color: #ffffff;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+.create-menu button:hover {
+  background-color: #45a049;
+}
+.create-menu select {
+  background-color: #f9f9f9;
+}
+.create-menu .form-footer {
+  text-align: center;
+  color: #777;
+}
 /* Product Info Container */
 .product-detail__info {
   flex: 1;

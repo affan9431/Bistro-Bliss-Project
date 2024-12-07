@@ -1,0 +1,109 @@
+doctype html
+html
+  head
+    title Bistro Bliss | Admin
+    link(rel="shortcut icon", href="/images/fav.jpg", type="image/x-icon")
+    link(rel="stylesheet", href="/css/style.css")
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwz4ZwPPX1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM' crossorigin='anonymous')
+    link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css')
+
+      
+    
+  body
+    include _header
+    .container
+      h1 Booking Management
+
+      // Tabs Section
+      .tabs.mb-3
+        button.tab-button(onclick="showTab('tableBooking')") All Table Booking
+        button.tab-button(onclick="showTab('foodBooking')") All Food Booking
+        button.tab-button(onclick="showTab('addMenu')") Add Menu
+
+      // Tab Content for Table Bookings
+      .tab-content#tableBooking
+        h2 All Table Booking
+        if tableBookings.length
+          table.table.table-bordered
+            thead
+              tr
+                th Name
+                th Phone
+                th Booking Date
+                th Start Time
+                th End Time
+                th Branch
+                th Persons
+                th Reserved?
+                th Created At
+            tbody
+              each booking in tableBookings
+                tr
+                  td= booking.name
+                  td= booking.phone
+                  td= booking.date.toString().split("GMT")[0]
+                  td= booking.startTime
+                  td= booking.endTime
+                  td= booking.branch
+                  td= booking.persons
+                  td= booking.isReserved ? "Yes" : "No"
+                  td= new Date(booking.createdAt).toString().split("GMT")[0]
+        else
+          p No table bookings available.
+
+      // Tab Content for Food Bookings
+      .tab-content#foodBooking(style="display:none")
+        h2 All Food Booking
+        if FoodBookings.length
+          each booking in FoodBookings
+            .food-booking
+              h3= `Booking by ${booking.name}`
+              p Address: #{booking.address.join(', ')}
+              p Phone: #{booking.phone}
+              span Created at: 
+              span= booking.createdAt.toString().split("GMT")[0]
+              
+              if booking.cartItems && booking.cartItems.length
+                h4 Cart Items
+                table.table.table-bordered
+                  thead
+                    tr
+                      th Item Name
+                      th Quantity
+                      th Price
+                  tbody
+                    each item in booking.cartItems
+                      tr
+                        td= item.name
+                        td= item.quantity
+                        td= item.price
+              else
+                p No items in the cart.
+        else
+          p No food bookings available.
+      .tab-content#addMenu(style="display:none")   
+        .create-menu
+            h2 Add Food Item
+            form
+                label(for="name") Name:
+                input#name(type="text" name="name" placeholder="Enter food name" required)
+
+                label(for="price") Price:
+                input#price(type="text" name="price" placeholder="Enter food price" required)
+
+                label(for="description") Description:
+                select#description(name="description" required)
+                    option(value="") -- Select a description --
+                    option(value="Made with eggs, lettuce, salt, oil and other ingredients.") Made with eggs, lettuce, salt, oil, and other ingredients.
+                    option(value="Freshly prepared with high-quality spices and herbs.") Freshly prepared with high-quality spices and herbs.
+                    option(value="A classic dish loved by everyone.") A classic dish loved by everyone.
+                    option(value="Rich in flavors and cooked to perfection.") Rich in flavors and cooked to perfection.
+
+        button#AddMenu(type="button") Submit Food
+
+
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer")   
+    script(src='https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js')
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js', integrity='sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM', crossorigin='anonymous')    
+    script(src="/js/script.js")     
+

@@ -1,5 +1,6 @@
 const Menu = require("./../model/menuModel");
 const Booking = require("./../model/bookModel");
+const Food = require("./../model/FoodModel");
 const mongoose = require("mongoose");
 const Email = require("../public/js/email");
 const AppError = require("./../utils/AppError");
@@ -52,7 +53,6 @@ exports.getCart = (req, res) => {
 
 exports.getCheckoutSession = async (req, res, next) => {
   const items = req.body.items;
-  console.log(items);
 
   // Create line items for Stripe checkout session
   const lineItems = items.map((item) => {
@@ -164,7 +164,16 @@ exports.getMenuById = async (req, res, next) => {
   res.status(200).render("MenuDetail");
 };
 
-
 exports.getUser = async (req, res, next) => {
   res.status(200).render("userPage");
-}
+};
+
+exports.getAdmin = async (req, res, next) => {
+  const tableBookings = await Booking.find();
+  const FoodBookings = await Food.find();
+
+  res.status(200).render("admin", {
+    tableBookings,
+    FoodBookings,
+  });
+};

@@ -55,10 +55,10 @@ const sendEmailToWeb3Form = async (email) => {
   formData.append("email", email); // Send email to Web3Form
 
   // Custom message
-  const message = `Hello, welcome to Bistro Bliss! We are happy to have you with us.`;
+  // const message = `Hello, welcome to Bistro Bliss! We are happy to have you with us.`;
 
   // Add the custom message to the form data
-  formData.append("message", message);
+  // formData.append("message", message);
 
   try {
     const response = await axios.post(

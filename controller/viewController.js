@@ -172,8 +172,13 @@ exports.getAdmin = async (req, res, next) => {
   const tableBookings = await Booking.find();
   const FoodBookings = await Food.find();
 
+  const pieData = tableBookings.map((table) => table.createdBy.email);
+
+  const barData = tableBookings.map((table) => table.createdAt);
+  console.log(barData);
   res.status(200).render("admin", {
     tableBookings,
     FoodBookings,
+    data: { pieData, barData },
   });
 };

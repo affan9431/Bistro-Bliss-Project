@@ -17,7 +17,7 @@ exports.signup = async (req, res) => {
 
   const url = `${req.protocol}://${req.get("host")}`;
 
-  await new Email(newUser, url).sendWelcome();
+  // await new Email(newUser, url).sendWelcome();
 
   res.status(201).json({
     status: "success",
@@ -57,7 +57,7 @@ exports.login = async (req, res, next) => {
 
   const url = `${req.protocol}://${req.get("host")}`;
 
-  await new Email(user, url).sendWelcome();
+  // await new Email(user, url).sendWelcome();
 
   res.status(200).json({
     status: "success",

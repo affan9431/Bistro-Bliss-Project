@@ -71,6 +71,8 @@ const logout = async () => {
   try {
     const res = await axios.get("/users/logout");
 
+    console.log(res);
+
     if (res.data.status === "success") {
       location.assign("/login");
     }
@@ -360,71 +362,76 @@ if (addMenu) {
 }
 
 // Extract data passed from Node.js
-const emailList = data.pieData;
+// Check if 'data' is available
+if (data) {
+  const emailList = data?.pieData;
 
-// Step 1: Aggregate email counts
-const emailCounts = {};
-emailList.forEach((email) => {
-  emailCounts[email] = (emailCounts[email] || 0) + 1; // Increment count for each email
-});
+  // Step 1: Aggregate email counts
+  const emailCounts = {};
+  emailList.forEach((email) => {
+    emailCounts[email] = (emailCounts[email] || 0) + 1; // Increment count for each email
+  });
 
-// Step 2: Prepare data for Pie Chart
-const labels = Object.keys(emailCounts); // Unique emails
-const dataPoints = Object.values(emailCounts); // Counts for each email
+  // Step 2: Prepare data for Pie Chart
+  const labels = Object.keys(emailCounts); // Unique emails
+  const dataPoints = Object.values(emailCounts); // Counts for each email
 
-// Pie Chart
-const pieCtx = document.getElementById("pieChart").getContext("2d");
-new Chart(pieCtx, {
-  type: "pie",
-  data: {
-    labels: labels, // Unique emails as labels
-    datasets: [
-      {
-        data: dataPoints, // Counts as data points
-        backgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56",
-          "#4BC0C0",
-          "#9966FF",
-          "#FF9F40",
-        ], // Colors for chart
-      },
-    ],
-  },
-});
+  // Pie Chart
+  const pieCtx = document.getElementById("pieChart").getContext("2d");
+  new Chart(pieCtx, {
+    type: "pie",
+    data: {
+      labels: labels, // Unique emails as labels
+      datasets: [
+        {
+          data: dataPoints, // Counts as data points
+          backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56",
+            "#4BC0C0",
+            "#9966FF",
+            "#FF9F40",
+          ], // Colors for chart
+        },
+      ],
+    },
+  });
 
-const createdAt = data.barData;
+  const createdAt = data?.barData;
 
-const bookingsPerDay = createdAt.reduce((acc, date) => {
-  const day = new Date(date).toISOString().split("T")[0]; // Get the date part (YYYY-MM-DD)
-  acc[day] = (acc[day] || 0) + 1;
-  return acc;
-}, {});
+  const bookingsPerDay = createdAt.reduce((acc, date) => {
+    const day = new Date(date).toISOString().split("T")[0]; // Get the date part (YYYY-MM-DD)
+    acc[day] = (acc[day] || 0) + 1;
+    return acc;
+  }, {});
 
-// Prepare data for the bar chart
-const labelsBar = Object.keys(bookingsPerDay);
-const barData = Object.values(bookingsPerDay);
+  // Prepare data for the bar chart
+  const labelsBar = Object.keys(bookingsPerDay);
+  const barData = Object.values(bookingsPerDay);
 
-// Bar Chart
-const barCtx = document.getElementById("barChart").getContext("2d");
-new Chart(barCtx, {
-  type: "bar",
-  data: {
-    labels: labelsBar, // Dates as labels
-    datasets: [
-      {
-        label: "Bookings",
-        data: barData, // Number of bookings per day
-        backgroundColor: "#36A2EB",
-      },
-    ],
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true,
+  // Bar Chart
+  const barCtx = document.getElementById("barChart").getContext("2d");
+  new Chart(barCtx, {
+    type: "bar",
+    data: {
+      labels: labelsBar, // Dates as labels
+      datasets: [
+        {
+          label: "Bookings",
+          data: barData, // Number of bookings per day
+          backgroundColor: "#36A2EB",
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
       },
     },
-  },
-});
+  });
+} else {
+  console.warn("Data is not defined. Charts will not be rendered.");
+}

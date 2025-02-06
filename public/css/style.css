@@ -1180,7 +1180,7 @@ td {
 
 .cart-item-li {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 .cart-icon {
